@@ -11,5 +11,7 @@ public partial class Product
 
     public int CateId { get; set; }
 
+    public double? Price { get; set; }
+
     public virtual Category Cate { get; set; } = null!;
 }

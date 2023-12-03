@@ -27,13 +27,13 @@ namespace API.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<List<ProductViewModel>>> GetProducts()
         {
             if (_context.Products == null)
             {
                 return NotFound();
             }
-            return await _context.Products.ToListAsync();
+            return _mapper.Map<List<ProductViewModel>>(await _context.Products.Include(x => x.Cate).ToListAsync());
         }
 
         [HttpGet("Search")]
@@ -48,13 +48,13 @@ namespace API.Controllers
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductViewModel>> GetProduct(int id)
         {
             if (_context.Products == null)
             {
                 return NotFound();
             }
-            var product = await _context.Products.FindAsync(id);
+            var product = _mapper.Map<ProductViewModel>(_context.Products.Include(x => x.Cate).Where(x => x.Id == id).FirstOrDefault());
 
             if (product == null)
             {

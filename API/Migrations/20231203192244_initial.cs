@@ -30,7 +30,8 @@ namespace API.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CateId = table.Column<int>(type: "int", nullable: false)
+                    CateId = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: true)
                 },
                 constraints: table =>
                 {
