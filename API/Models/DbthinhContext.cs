@@ -21,7 +21,7 @@ public partial class DbthinhContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=(local); Database=DBThinh ; Trusted_Connection=True;User ID=sa;Password=12345;Trust Server Certificate=true;");
+        => optionsBuilder.UseSqlServer("Server=(local); Database=DBThinh1 ; Trusted_Connection=True;User ID=sa;Password=12345;Trust Server Certificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -33,6 +33,10 @@ public partial class DbthinhContext : DbContext
 
             entity.Property(e => e.CateName).HasMaxLength(50);
         });
+
+        modelBuilder.Entity<Category>().HasData(
+            new Category { Id = 1, CateName = "Truyện" }
+            );
 
         modelBuilder.Entity<Product>(entity =>
         {

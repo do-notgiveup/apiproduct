@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DbthinhContext))]
-    [Migration("20231203192244_initial")]
+    [Migration("20231214101453_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -42,6 +42,13 @@ namespace API.Migrations
                         .HasName("PK__Category__3214EC0714C6708E");
 
                     b.ToTable("Category", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CateName = "Truyện"
+                        });
                 });
 
             modelBuilder.Entity("API.Models.Product", b =>

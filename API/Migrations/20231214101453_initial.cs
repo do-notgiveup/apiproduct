@@ -43,6 +43,11 @@ namespace API.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.InsertData(
+                table: "Category",
+                columns: new[] { "Id", "CateName" },
+                values: new object[] { 1, "Truyện" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Product_CateId",
                 table: "Product",

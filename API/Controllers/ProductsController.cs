@@ -69,11 +69,6 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, CreateProductModel model)
         {
-            /*if (id != product.Id)
-            {
-                return BadRequest();
-            }*/
-
             var findProduct = _context.Products.Find(id);
             var mapper = _mapper.Map(model, findProduct);
 

@@ -39,6 +39,13 @@ namespace API.Migrations
                         .HasName("PK__Category__3214EC0714C6708E");
 
                     b.ToTable("Category", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CateName = "Truyện"
+                        });
                 });
 
             modelBuilder.Entity("API.Models.Product", b =>

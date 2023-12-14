@@ -59,11 +59,6 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategory(int id, CreateCategoryModel model)
         {
-            /*if (id != category.Id)
-            {
-                return BadRequest();
-            }*/
-
             var findCate = _context.Categories.Find(id);
             var mapper = _mapper.Map(model, findCate);
             _context.Entry(mapper).State = EntityState.Modified;
