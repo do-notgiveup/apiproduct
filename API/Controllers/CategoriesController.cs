@@ -19,9 +19,10 @@ namespace API.Controllers
         public readonly IMapper _mapper;
 
 
-        public CategoriesController(DbthinhContext context)
+        public CategoriesController(DbthinhContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Categories
