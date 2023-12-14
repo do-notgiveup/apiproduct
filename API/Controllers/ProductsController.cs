@@ -37,13 +37,22 @@ namespace API.Controllers
         }
 
         [HttpGet("Search")]
-        public async Task<ActionResult<IEnumerable<Product>>> SearchProducts([FromQuery] SearchProductModel model)
+        public async Task<ActionResult<List<ProductViewModel>>> SearchProducts([FromQuery] SearchProductModel model)
         {
+            if (model.Id == null && model.ProductName == null && model.CateId == null && model.Price == null) 
+            {
+                return await GetProducts();
+            }
+
             if (_context.Products == null)
             {
                 return NotFound();
             }
-            return await _context.Products.Where(x => x.Id == model.Id || x.ProductName.Contains(model.ProductName) || x.CateId == model.CateId).ToListAsync();
+            return _mapper.Map<List<ProductViewModel>>(await _context.Products.Where(x => x.Id == model.Id
+                                                || x.ProductName.Contains(model.ProductName)
+                                                || x.Price == model.Price
+                                                || x.CateId == model.CateId
+                                                ).ToListAsync());
         }
 
         // GET: api/Products/5
